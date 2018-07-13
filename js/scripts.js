@@ -6,17 +6,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 class Slider{
     constructor(){
-        this.data = 'https://frontend.camp.dev.unit6.ru/get-slides';
+        this.resurce = 'https://frontend.camp.dev.unit6.ru/get-slides';
+        this.arr;
 
         this.init();
     }
 
     init(){
-        const datas = this.getDatas(this.data)
+        const datas = this.getDatas(this.resurce)
+        console.log(datas)
+        // .then(datas => {
+        //     console.log(datas.title)
+        // })
     }
 
     getDatas(data){
-        fetch(data).then(function(response){
+        this.data = data;
+        return fetch(this.data)
+        .then(function(response){
             if(response.status !== 200){
                 console.log(response.status)
                 return;
@@ -24,6 +31,7 @@ class Slider{
             
             response.json().then(function(data){
                 console.log(data)
+                // this.arr = data;
             })
         })
         .catch(function(err) {  
